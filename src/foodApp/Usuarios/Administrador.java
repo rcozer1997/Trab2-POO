@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 public class Administrador extends Usuario {
 
+	public Administrador() {
+		super();
+	}
 
 
 
 	public Administrador(BufferedReader b) {
 		super(b);
 		// TODO Auto-generated constructor stub
-	}
-	public Administrador() {
-		super();
 	}
 
 	@Override

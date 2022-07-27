@@ -7,25 +7,24 @@ import java.util.Scanner;
 import foodApp.Interfaces.Login;
 import foodApp.Lanchonetes.Lanchonete;
 
-public class Proprietario extends Usuario implements Login {
-	
-
-	public Proprietario(BufferedReader b) {
-		super(b);
-		// TODO Auto-generated constructor stub
-	}
+public class Proprietario extends Usuario {
 	
 	public Proprietario() {
 		super();
-		
 	}
+
+	public Proprietario(BufferedReader b) {
+		super(b);
+	}
+	
+	
+	
 
 	ArrayList<Lanchonete> lanchonetes = new ArrayList <>();
 
 	
 	@Override
 	public void removeCadastro() {
-		// TODO Auto-generated method stub
 		
 	}
 

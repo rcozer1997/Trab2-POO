@@ -24,7 +24,6 @@ public class Sistema {
 		arq.lerProprietarioArq(listaProprietarios);	
 		arq.lerAdminsArq(listaAdmins);
 		
-		System.out.println(listaClientes.isEmpty());
 		int opcao;
 		do {
 			menus.menuPrincipal();
@@ -34,8 +33,7 @@ public class Sistema {
 			
 			System.out.println("Qual perfil deseja cadastrar?");
 			menus.printaPerfisUsuarios();
-;
-			
+
 			int opcaoCadastro = s.nextInt();
 			
 			switch(opcaoCadastro) {
@@ -68,7 +66,6 @@ public class Sistema {
 				break;
 			case 2:
 				
-				menus.menuProprietario();
 				break;
 			case 3:
 				
@@ -81,6 +78,7 @@ public class Sistema {
 	
 	}while (opcao!= 0);
 }
-	
+
+
 	
 }

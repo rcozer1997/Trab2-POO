@@ -87,7 +87,7 @@ public class Arquivos {
 	
 	public void lerClientesArq(ArrayList<Cliente> listaClientes) {
 		try {
-			FileReader f = new FileReader("Proprietarios.csv");
+			FileReader f = new FileReader("Clientes.csv");
 			BufferedReader b = new BufferedReader(f);
 			
 			int t = Integer.parseInt(b.readLine());
@@ -96,6 +96,8 @@ public class Arquivos {
 				listaClientes.add(new Cliente(b));
 			}
 			b.close();
+			f.close();
+
 			System.out.println(listaClientes.size() + " Clientes carregados!");
 			
 		}catch(IOException e) {
@@ -105,7 +107,7 @@ public class Arquivos {
 	
 	public void lerAdminsArq(ArrayList<Administrador> listaAdmins) {
 		try {
-			FileReader f = new FileReader("Proprietarios.csv");
+			FileReader f = new FileReader("Admins.csv");
 			BufferedReader b = new BufferedReader(f);
 			
 			int t = Integer.parseInt(b.readLine());
