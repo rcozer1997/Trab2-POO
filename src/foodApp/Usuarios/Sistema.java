@@ -78,7 +78,27 @@ public class Sistema {
 	
 	}while (opcao!= 0);
 }
-
-
+	public void loginProprietario(String email, String senha){
+		Proprietario prop = null;
+		for(int i = 0; i<listaProprietarios.size();i++){
+			Proprietario p = listaProprietarios.get(i);
+			if(p.getEmail.equals(email)){
+				prop = p;
+				validaSenha(p, senha);
+				break;
+			}
+		}	
+		if(prop == null){
+			System.out.println("Proprietario nao existe!");
+		}
+		else return prop;
+	}
+	public void validaSenha(Usuario u, String senha){
+		if(u.senha == senha){
+			System.out.println("Logado com sucesso!")
+				}
+		else
+		System.out.println("Senha incorreta!")
+	}
 	
 }

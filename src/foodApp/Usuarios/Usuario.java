@@ -54,6 +54,10 @@ public abstract class Usuario {
 		//validaLogin(email, senha);		
 	}
 
+	public String getEmail(){
+		return this.email;
+	}
+
 		/*
 	public boolean validaLogin(File f, String email, String senha) {
 		try {
