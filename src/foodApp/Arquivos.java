@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import foodApp.Lanchonetes.Lanchonete;
 import foodApp.Usuarios.Administrador;
 import foodApp.Usuarios.Cliente;
 import foodApp.Usuarios.Proprietario;
@@ -20,9 +21,9 @@ public class Arquivos {
 			BufferedWriter b = new BufferedWriter(f);
 			
 			b.write(listaProprietarios.size() + "\n");
-			for(Proprietario p : listaProprietarios) {
+			for(Usuario u : listaProprietarios) {
 				
-				p.salvarUsuariosArq(b);
+				u.salvarUsuariosArq(b);
 			}
 			b.close();
 			
@@ -123,7 +124,44 @@ public class Arquivos {
 			System.out.println("Nenhum admin carregado.");
 		}
 	}
-
+	
+	public void salvaLanchoneteArq(ArrayList<Lanchonete> lanchonetes) {
+		try {
+			FileWriter f = new FileWriter("Lanchonetes.csv");
+			BufferedWriter b = new BufferedWriter(f);
+			
+			b.write(lanchonetes.size() + "\n");
+			for(Lanchonete l : lanchonetes) {
+				
+				l.gravaLanchonete(b);
+			}
+			b.close();
+			
+		}catch(IOException e) {
+			System.out.println("Erro ao salvar o arquivo.");
+		}
+	}
+	
+	public void lerLanchonetesArq(ArrayList<Lanchonete> lanchonetes) {
+		try {
+			FileReader f = new FileReader("Lanchonetes.csv");
+			BufferedReader b = new BufferedReader(f);
+			
+			int t = Integer.parseInt(b.readLine());
+			
+			for(int i = 0; i<t; i++) {
+				lanchonetes.add(new Lanchonete(b));
+			}
+			f.close();
+			b.close();
+			System.out.println(lanchonetes.size() + " Lanchonetes carregados!");
+			
+		}catch(IOException e) {
+			System.out.println("Nenhuma lanchonete carregada.");
+		}
+	}
+	
+	
 	
 	
 	

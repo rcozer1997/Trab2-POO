@@ -10,8 +10,8 @@ public abstract class Usuario {
 	String nome;
 	String email;
 	String senha;
+	int tipo;
 	
-
 	public Usuario() {
 		Scanner s = new Scanner(System.in);
 		System.out.print("Nome:");
@@ -57,7 +57,15 @@ public abstract class Usuario {
 	public String getEmail(){
 		return this.email;
 	}
-
+	
+	public String getSenha() {
+		return this.senha;
+	}
+	
+	public String getNome() {
+		return this.nome;		
+	}
+	public abstract void menu();
 		/*
 	public boolean validaLogin(File f, String email, String senha) {
 		try {
@@ -85,7 +93,7 @@ public abstract class Usuario {
 	}
 	*/
 	
-	public abstract void removeCadastro();
+	
 	
 	
 }

@@ -16,7 +16,7 @@ public class Sistema {
 	
 	
 	public void menuPrincipal() {
-		
+
 		Menus menus = new Menus();
 		Arquivos arq = new Arquivos();
 		Scanner s = new Scanner(System.in);
@@ -64,8 +64,8 @@ public class Sistema {
 			case 1:
 				
 				break;
-			case 2:
-				
+			case 2:		
+				loginProprietario();
 				break;
 			case 3:
 				
@@ -77,28 +77,70 @@ public class Sistema {
 			System.out.println("Opcao invalida!!!");
 	
 	}while (opcao!= 0);
-}
-	public void loginProprietario(String email, String senha){
+}	
+	
+	//Nesse método, optei por iterar as 3 listas pois acredito que na lógica de negócio, seria incorreto que, por exemplo, um Administrador pudesse cadastrar com o mesmo email que um Usuario cadastrou.
+	//Embora sejam usuarios de tipos diferentes, pensando numa regra geral, isso seria considerado um vazamento de segurança. Iterando dessa forma, garanto que isso não aconteça.
+	public void verificaCadastro(Usuario u) {
+		for(int i = 0; i<listaProprietarios.size();i++){
+			Usuario usu = listaProprietarios.get(i);
+			if(usu.getEmail().equals(u.getEmail()))
+			{
+				System.out.println("Email ja cadastrado!");
+				break;
+			}	
+		}
+		for(int i = 0; i<listaClientes.size();i++){
+			Usuario usu = listaClientes.get(i);
+			if(usu.getEmail().equals(u.getEmail()))
+			{
+				System.out.println("Email ja cadastrado!");
+				break;
+			}		
+		}
+		for(int i = 0; i<listaAdmins.size();i++){
+			Usuario usu = listaAdmins.get(i);
+			if(usu.getEmail().equals(u.getEmail()))
+			{
+				System.out.println("Email ja cadastrado!");
+				break;
+			}		
+		}
+	}
+	
+	public void loginProprietario(){
+		
+		Scanner s = new Scanner(System.in);
+		System.out.print("Email:");
+		String email = s.nextLine();
+		System.out.print("Senha:");
+		String senha = s.nextLine();
+
 		Proprietario prop = null;
 		for(int i = 0; i<listaProprietarios.size();i++){
 			Proprietario p = listaProprietarios.get(i);
-			if(p.getEmail.equals(email)){
+			if(p.getEmail().equals(email)){
 				prop = p;
-				validaSenha(p, senha);
+				validaSenha(prop, senha);
 				break;
 			}
 		}	
 		if(prop == null){
 			System.out.println("Proprietario nao existe!");
 		}
-		else return prop;
+		
 	}
+	
+	
+	
 	public void validaSenha(Usuario u, String senha){
-		if(u.senha == senha){
-			System.out.println("Logado com sucesso!")
-				}
-		else
-		System.out.println("Senha incorreta!")
+		if(u.getSenha().equals(senha)){
+			 System.out.println("Logado com sucesso!");
+			 u.menu();
+		}
+		else {
+			System.out.println("Senha incorreta!");
+			}
 	}
 	
 }

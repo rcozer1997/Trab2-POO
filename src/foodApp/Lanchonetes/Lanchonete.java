@@ -1,4 +1,7 @@
 package foodApp.Lanchonetes;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,43 +15,37 @@ public class Lanchonete {
 	int pontos;
 	Proprietario proprietario;
 	ArrayList<Lanche> lanches = new ArrayList<>();
-	int tipo; // 1 - Lanchonete Online , 2 - Hibrida
 	
-	public Lanchonete(int codigo, String nome, String endereco, String categoria, int tipo) {
+	public Lanchonete(BufferedReader b) {
+		try {
+		this.nome = b.readLine();
+		this.endereco = b.readLine();
+		this.categoria = b.readLine();
+		this.pontos = Integer.parseInt(b.readLine());
+		}catch(IOException e) 
+		{
+			System.out.println("Erro");
+		}
+	}
+	
+	public Lanchonete(int codigo, String nome, String endereco, String categoria) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.categoria = categoria;
 		this.pontos = 0;
-		this.tipo = tipo;
 	}
 	
-	public void cadastraLanchonete() {
-		Scanner s = new Scanner(System.in);
-
-		System.out.println("Informe os dados da lanchonete a ser cadastrada: ");
-		System.out.println("Codigo identificador: ");
-		int codigo = s.nextInt();
-		s.nextLine();
-		System.out.println("Nome: ");
-		String nome = s.nextLine();
-		System.out.println("Endereço: ");
-		String endereco = s.nextLine();
-		System.out.println("Categoria de produtos: ");
-		String categoria = s.nextLine();
-		System.out.println("Qual o tipo da lanchonete?");
-		System.out.println("1 - Online\n2 - Hibrida (contem lojas fisicas)");
-		int tipo = s.nextInt();
-		s.nextLine();
+	public void gravaLanchonete(BufferedWriter b) throws IOException {
 		
-		Lanchonete l = new Lanchonete(codigo,nome,endereco,categoria, tipo);
+			b.write(this.nome + "\n");
+			b.write(this.endereco + "\n");
+			b.write(this.categoria + "\n");
+			b.write(this.pontos + "\n");
 			
 	}
 	
-	public void removeLanchonete() {
-		
-	}
 	
 	public void cadastraLancheLanchonete(Lanchonete l) {
 		Scanner s = new Scanner(System.in);

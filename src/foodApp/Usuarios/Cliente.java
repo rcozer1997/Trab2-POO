@@ -18,7 +18,7 @@ public class Cliente extends Usuario {
 	
 
 	@Override
-	public void removeCadastro() {
+	public void menu() {
 		// TODO Auto-generated method stub
 		
 	}

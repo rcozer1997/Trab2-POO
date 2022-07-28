@@ -16,8 +16,12 @@ public class Administrador extends Usuario {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+
+
 	@Override
-	public void removeCadastro() {
+	public void menu() {
 		// TODO Auto-generated method stub
 		
 	}
