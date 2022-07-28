@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import foodApp.Arquivos;
-import foodApp.Interfaces.Login;
 import foodApp.Lanchonetes.Lanchonete;
 
 public class Proprietario extends Usuario {

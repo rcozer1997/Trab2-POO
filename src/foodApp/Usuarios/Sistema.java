@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import foodApp.Acesso;
 import foodApp.Arquivos;
 import foodApp.Menus;
 
@@ -16,7 +17,7 @@ public class Sistema {
 	
 	
 	public void menuPrincipal() {
-
+		Acesso acesso = new Acesso();
 		Menus menus = new Menus();
 		Arquivos arq = new Arquivos();
 		Scanner s = new Scanner(System.in);
@@ -39,18 +40,17 @@ public class Sistema {
 			switch(opcaoCadastro) {
 			case 1:
 				Administrador a = new Administrador();
-				listaAdmins.add(a);
-				arq.salvaAdminArq(listaAdmins, "Admins.csv");
+				acesso.verificaCadastroAdmins(a, listaAdmins);
 				break;
 			case 2:
 				Proprietario p = new Proprietario();
+				if(!acesso.verificaCadastroProprietarios(p, listaProprietarios)) break;
 				listaProprietarios.add(p);
 				arq.salvaProprietarioArq(listaProprietarios, "Proprietarios.csv");
 				break;
 			case 3:
 				Cliente c = new Cliente();
-				listaClientes.add(c);
-				arq.salvaClienteArq(listaClientes, "Clientes.csv");
+				acesso.verificaCadastroClientes(c, listaClientes);
 				break;
 			
 			} 
@@ -62,13 +62,13 @@ public class Sistema {
 			
 			switch(opcaoLogin) {
 			case 1:
-				
+				acesso.loginAdmin(listaAdmins);
 				break;
 			case 2:		
-				loginProprietario();
+				acesso.loginProprietario(listaProprietarios);
 				break;
 			case 3:
-				
+				acesso.loginCliente(listaClientes);
 				break;
 			
 			} 
@@ -79,68 +79,8 @@ public class Sistema {
 	}while (opcao!= 0);
 }	
 	
-	//Nesse método, optei por iterar as 3 listas pois acredito que na lógica de negócio, seria incorreto que, por exemplo, um Administrador pudesse cadastrar com o mesmo email que um Usuario cadastrou.
-	//Embora sejam usuarios de tipos diferentes, pensando numa regra geral, isso seria considerado um vazamento de segurança. Iterando dessa forma, garanto que isso não aconteça.
-	public void verificaCadastro(Usuario u) {
-		for(int i = 0; i<listaProprietarios.size();i++){
-			Usuario usu = listaProprietarios.get(i);
-			if(usu.getEmail().equals(u.getEmail()))
-			{
-				System.out.println("Email ja cadastrado!");
-				break;
-			}	
-		}
-		for(int i = 0; i<listaClientes.size();i++){
-			Usuario usu = listaClientes.get(i);
-			if(usu.getEmail().equals(u.getEmail()))
-			{
-				System.out.println("Email ja cadastrado!");
-				break;
-			}		
-		}
-		for(int i = 0; i<listaAdmins.size();i++){
-			Usuario usu = listaAdmins.get(i);
-			if(usu.getEmail().equals(u.getEmail()))
-			{
-				System.out.println("Email ja cadastrado!");
-				break;
-			}		
-		}
-	}
-	
-	public void loginProprietario(){
-		
-		Scanner s = new Scanner(System.in);
-		System.out.print("Email:");
-		String email = s.nextLine();
-		System.out.print("Senha:");
-		String senha = s.nextLine();
-
-		Proprietario prop = null;
-		for(int i = 0; i<listaProprietarios.size();i++){
-			Proprietario p = listaProprietarios.get(i);
-			if(p.getEmail().equals(email)){
-				prop = p;
-				validaSenha(prop, senha);
-				break;
-			}
-		}	
-		if(prop == null){
-			System.out.println("Proprietario nao existe!");
-		}
-		
-	}
 	
 	
 	
-	public void validaSenha(Usuario u, String senha){
-		if(u.getSenha().equals(senha)){
-			 System.out.println("Logado com sucesso!");
-			 u.menu();
-		}
-		else {
-			System.out.println("Senha incorreta!");
-			}
-	}
 	
 }

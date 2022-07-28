@@ -18,6 +18,7 @@ public class Lanchonete {
 	
 	public Lanchonete(BufferedReader b) {
 		try {
+		this.codigo = Integer.parseInt(b.readLine());
 		this.nome = b.readLine();
 		this.endereco = b.readLine();
 		this.categoria = b.readLine();
@@ -38,7 +39,8 @@ public class Lanchonete {
 	}
 	
 	public void gravaLanchonete(BufferedWriter b) throws IOException {
-		
+			
+			b.write(this.codigo + "\n");
 			b.write(this.nome + "\n");
 			b.write(this.endereco + "\n");
 			b.write(this.categoria + "\n");
