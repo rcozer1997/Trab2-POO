@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Usuario {
@@ -25,16 +26,12 @@ public abstract class Usuario {
 		this.senha = senha;	
 	}
 	
-	public Usuario(BufferedReader b) {
-		try {
-		this.nome = b.readLine();
-		this.email = b.readLine();
-		this.senha = b.readLine();
-		this.ident = Integer.parseInt(b.readLine());
-		}catch(IOException e) 
-		{
-			System.out.println("Erro");
-		}
+	public Usuario(ArrayList<String> list) {	
+		this.nome = list.get(0);
+		this.email = list.get(1);
+		this.senha = list.get(2);
+		this.ident = Integer.parseInt(list.get(3));
+		
 	}
 	
 	public void gravaUsuariosArq(BufferedWriter b) throws IOException {

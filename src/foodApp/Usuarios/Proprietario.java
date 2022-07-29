@@ -18,8 +18,8 @@ public class Proprietario extends Usuario {
 		this.ident = 2;
 	}
 
-	public Proprietario(BufferedReader b) {
-		super(b);
+	public Proprietario(ArrayList<String> list) {
+		super(list);
 		
 	}
 

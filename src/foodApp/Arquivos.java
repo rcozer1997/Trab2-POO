@@ -27,33 +27,33 @@ public class Arquivos {
 		}catch(IOException e) {
 			System.out.println("Erro ao salvar o arquivo!");
 		}
-		
 	}
 	
 	public void lerUsuariosArq(ArrayList<Usuario> listaUsuarios) {
 		try {
 			FileReader f = new FileReader("Usuarios.csv");
 			BufferedReader b = new BufferedReader(f);
-			BufferedReader pegaIdent = new BufferedReader(f);
 			int t = Integer.parseInt(b.readLine());
+            ArrayList<String> d = new ArrayList<String>();
 			
 			for(int i = 0; i<t; i++) {
-				for(int j = 0; i<4; i++) {
-					int ident = Integer.parseInt(pegaIdent.readLine());
-					if(ident == 1) {
-						listaUsuarios.add(new Administrador(b));
-					}
-					else if(ident == 2) {
-						listaUsuarios.add(new Proprietario(b));
-					}
-					else if(ident == 3) {
-						listaUsuarios.add(new Cliente(b));
-					}
+				for(int j = 0; j<4; j++) {
+					String data = b.readLine();
+					d.add(data);
 				}
-			}
-			
+				int id = Integer.parseInt(d.get(3));
+                if(id == 1) {
+					listaUsuarios.add(new Administrador(d));
+				}
+				else if(id == 2) {
+					listaUsuarios.add(new Proprietario(d));
+				}
+				else if(id == 3) {
+					listaUsuarios.add(new Cliente(d));
+				}
+                d.clear();
+			}		
 			b.close();
-			pegaIdent.close();
 			f.close();
 			System.out.println(listaUsuarios.size() + " Usuarios carregados!");
 			
@@ -61,6 +61,8 @@ public class Arquivos {
 			System.out.println("Nenhum usuario carregado.");
 		}
 	}
+
+	
 	
 	public void salvaLanchoneteArq(ArrayList<Lanchonete> lanchonetes) {
 		try {

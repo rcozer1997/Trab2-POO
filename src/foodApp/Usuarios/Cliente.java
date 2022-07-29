@@ -1,6 +1,7 @@
 package foodApp.Usuarios;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Cliente extends Usuario {
@@ -11,8 +12,8 @@ public class Cliente extends Usuario {
 		this.ident = 3;
 	}
 
-	public Cliente(BufferedReader b) {
-		super(b);
+	public Cliente(ArrayList<String> list) {
+		super(list);
 		// TODO Auto-generated constructor stub
 	}
 	
