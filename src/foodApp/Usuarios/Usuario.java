@@ -10,8 +10,7 @@ public abstract class Usuario {
 	String nome;
 	String email;
 	String senha;
-	int tipo;
-	
+	int ident; // 1 - Administrador , 2 - Proprietario , 3 - Cliente
 	public Usuario() {
 		Scanner s = new Scanner(System.in);
 		System.out.print("Nome:");
@@ -31,27 +30,18 @@ public abstract class Usuario {
 		this.nome = b.readLine();
 		this.email = b.readLine();
 		this.senha = b.readLine();
+		this.ident = Integer.parseInt(b.readLine());
 		}catch(IOException e) 
 		{
 			System.out.println("Erro");
 		}
 	}
 	
-	public void salvarUsuariosArq(BufferedWriter b) throws IOException {
+	public void gravaUsuariosArq(BufferedWriter b) throws IOException {
 		b.write(this.nome + "\n");
 		b.write(this.email + "\n");
 		b.write(this.senha + "\n");
-	}
-	
-	
-	public void login() {
-		Scanner s = new Scanner (System.in);
-		System.out.println("Email:");
-		String email = s.nextLine();
-		System.out.println("Senha:");
-		String senha = s.nextLine();
-		
-		//validaLogin(email, senha);		
+		b.write(this.ident + "\n");
 	}
 
 	public String getEmail(){
@@ -65,34 +55,11 @@ public abstract class Usuario {
 	public String getNome() {
 		return this.nome;		
 	}
-	public abstract void menu();
-		/*
-	public boolean validaLogin(File f, String email, String senha) {
-		try {
-			Scanner s = new Scanner(f);
-			while (s.hasNextLine()) {
-				if()
-			}
-			s.close();
-		
-		}catch(IOException e) {
-			System.out.println("Erro");
-		}
-		
-		
-		
-		
-		
-		if(email.equals(this.email) && senha.equals(this.senha)) {
-			System.out.println("Logado com sucesso!");
-			return true;
-		}
-		else
-			System.out.println("Erro no login! Confira seus dados novamente.");
-		return false;
-	}
-	*/
 	
+	public int getIdent() {
+		return this.ident;
+	}
+	public abstract void menu();
 	
 	
 	

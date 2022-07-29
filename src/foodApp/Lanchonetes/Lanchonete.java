@@ -8,14 +8,23 @@ import java.util.Scanner;
 import foodApp.Usuarios.Proprietario;
 
 public class Lanchonete {
-	int codigo;
-	String nome;
-	String endereco;
-	String categoria;
-	int pontos;
+	public int codigo;
+	public String nome;
+	public String endereco;
+	public String categoria;
+	public int pontos;
 	Proprietario proprietario;
 	ArrayList<Lanche> lanches = new ArrayList<>();
+	ArrayList<Pedidos> listaPedidos = new ArrayList<>();
 	
+	Scanner s = new Scanner(System.in);
+	
+	@Override
+	public String toString() {
+		return "Lanchonete [codigo=" + codigo + ", nome=" + nome + ", endereco=" + endereco + ", categoria=" + categoria
+				+ ", pontos=" + pontos + "]";
+	}
+
 	public Lanchonete(BufferedReader b) {
 		try {
 		this.codigo = Integer.parseInt(b.readLine());
@@ -47,9 +56,8 @@ public class Lanchonete {
 			b.write(this.pontos + "\n");
 			
 	}
-	
-	
-	public void cadastraLancheLanchonete(Lanchonete l) {
+		
+	public void cadastraLanche(Lanchonete l) {
 		Scanner s = new Scanner(System.in);
 		
 		System.out.println("Informe os dados do lanche:");

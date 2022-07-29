@@ -8,6 +8,7 @@ public class Cliente extends Usuario {
 	
 	public Cliente() {
 		super();
+		this.ident = 3;
 	}
 
 	public Cliente(BufferedReader b) {
